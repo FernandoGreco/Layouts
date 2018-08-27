@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSS Pai e Filho</title>
+</head>
+<body>
+<h1>Medidas absolutas e relativas</h1>
+<hr>
+
+<h2>Porcentagem</h2>
+<article id="pai">
+	<article class="filho"></article>
+	<article class="filho"></article>
+	<article class="filho"></article>
+	<article class="filho"></article>
+</article>
+
+<style>
+	#pai{
+		width: 100%;
+		height: 200px;
+		background-color: green;
+
+	}
+	.filho{
+		background-color: blue;
+		width: 23%;
+		height: 90%;
+		float: left;
+		box-sizing: border-box;
+		margin: 1%;
+	}
+	/*Altera estilo do segundo elemento filho */
+	.filho:nth-child(2){
+
+		background-color: orange;
+	}
+
+</style>
+
+<h1>Flex Direction + outras coisas</h1>
+<hr>
+
+<h2>Define a tamanho/direção/ordem dox boxes</h2>
+
+
+<section id="content">
+	<article class="item">01</article>
+	<article class="item">02</article>
+	<article class="item">03</article>
+	<article class="item">04</article>
+</section> 
+
+<style>
+	#content {
+		background-color: gray;
+		height: 220px;
+		display: flex;
+		flex-direction: row; /* row, column, row-reverse, column-reverse, */
+		flex-wrap: nowrap; /* wrap, wrap reverse, no-wrap - wrapreverse joga o elemento do outro canto do box*/
+		justify-content:space-around; /* flex-start, flex-end (alinha esquerda ou direita, space-between, space-around (divide espaço entre elementos por igual) */
+		align-items: flex-end; /* stretch Faz com que altura do item pegue toda altura do content (isso se o item tiver sem heigth(altura)) base-line(alinha na base) */
+
+	}
+
+	.item{
+		width: 100px;
+		color: black;
+  		background-color: white;
+  		margin: 5px;
+	}
+
+	/* Define a ordem dos elementos*/
+
+	.item:nth-child(1){
+		order: 4;
+	}
+
+	.item:nth-child(2){
+		order: 2;
+	}
+
+	.item:nth-child(3){
+		order: 1;
+	}
+
+	.item:nth-child(4){
+		order: 3;
+	}
+</style>
+
+<h1>Box com tamanho diferente</h1>
+<hr>
+
+<h2>Um box com tamanho proporcional enviado por flex-grow</h2>
+
+
+<section id="content2">
+	<article class="item2">01</article>
+	<article class="item2">02</article>
+	<article class="item2">03</article>
+	<article class="item2">04</article>
+	<article class="item2">03</article>
+	<article class="item2">04</article>
+</section> 
+
+<style>
+	#content2 {
+		background-color: gray;
+		height: 120px;
+		display: flex;
+		flex-direction: row; /* row, column, row-reverse, column-reverse, */
+		flex-wrap: nowrap; /* wrap, wrap reverse, no-wrap - wrapreverse joga o elemento do outro canto do box*/
+		justify-content:space-around; /* flex-start, flex-end (alinha esquerda ou direita, space-between, space-around (divide espaço entre elementos por igual) */
+
+
+	}
+
+	.item2{
+		flex-grow: 0; /* Ocupada o resto da largura da DIV */
+		flex-shrink:1; /* encolhe a nossa div */
+		flex-basis: auto; /* define um width de cada elemento caso não tenha */
+		width: 100px;
+		height: 100px;
+		color: black;
+  		background-color: white;
+  		margin: 5px;
+	}
+
+	/* Define a ordem dos elementos*/
+
+	.item2:nth-child(1){
+		flex-grow:1;
+	}
+	.item2:nth-child(6){
+		background-color: orange;
+	}
+</style>
+
+<h1>Grid System</h1>
+<hr>
+
+<style>
+	#main{
+		display: grid;
+		/* Define altura das grids*/
+		grid-template-rows:15vh 10vh 55vh 20vh;
+		grid-template-areas: "header header" "nav nav" "content aside" "footer footer";
+	}
+	.mainHeader {grid-area:header; background-color: red;}
+	.mainNav {grid-area:nav; background-color: orange;}
+	.mainContent {grid-area:content; background-color: gray;}
+	.mainAside {grid-area:aside; background-color: black;}
+	.mainFooter {grid-area:footer; background-color: blue;}
+
+	@media screen and (max-width: 768px){
+		body{border-color: #cdcdcd;}
+		#main {grid-template-areas:"header" "content" "aside" "footer";}
+		.mainNav{grid-area:header; margin-top: 20px;}
+	}
+
+</style>
+
+<section id="main">
+	<header class="mainHeader">Header</header>
+	<nav class="mainNav">Nav</nav>
+	<article class="mainContent">Content</article>	
+	<aside class="mainAside">Aside</aside>
+	<footer class="mainFooter">Footer</footer>
+</section>
+</body>
+</html>
